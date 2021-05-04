@@ -1,7 +1,11 @@
 const express = require("express");
 const app = express();
-const router=express.Router();
+const session = require('express-session');
 const connection = require('../../model/database');
+app.use(session({secret:"scientist21062001",
+                resave:false,
+                saveUninitialized:false}))
+
 
 
 connection.connect((err)=>{
@@ -9,26 +13,30 @@ connection.connect((err)=>{
     console.log("successfully connected");
 })
 
-router.get('/login', (req,res)=>{
+app.get('/login', (req,res)=>{
     res.render('index');
     
 })
 
-router.get('/adminlogin', (req,res)=>{
+app.get('/adminlogin', (req,res)=>{
     res.render('adminlogin');
     
 })
 
-router.get('/userlogin', (req,res)=>{
+app.get('/userlogin', (req,res)=>{
     res.render('userlogin');
     
 })
 
 
-router.post('/uservalidation',(req,res)=>{
+app.post('/uservalidation',(req,res)=>{
     var email=req.body.mail; 
     var password=req.body.pass;
+
     connection.query('select password from user where email like ?',[email],(err,results)=>{
+        req.session.loggedin = true;
+            req.session.username = email;
+
         if (err) throw err;
         console.log(results[0].password);
         console.log(password);
@@ -43,10 +51,13 @@ router.post('/uservalidation',(req,res)=>{
         
 })
 
-router.post('/adminvalidation',(req,res)=>{
+app.post('/adminvalidation',(req,res)=>{
     var email=req.body.mail; 
     var password=req.body.pass;
            connection.query('select password from admin where email like ?',[email],(_err,result)=>{
+            req.session.loggedin = true;
+            req.session.username = email;
+
                 if(result[0].password==password)
                 {
                     console.log(result[0].password);
@@ -61,7 +72,7 @@ router.post('/adminvalidation',(req,res)=>{
         
     })
 
-    router.post('/check',(req,res)=>{
+    app.post('/check',(req,res)=>{
         var name=req.body.mov;
         var seats=req.body.seat;
         var amt = seats*200;
@@ -72,5 +83,8 @@ router.post('/adminvalidation',(req,res)=>{
         }
     })
 
-module.exports=router;
+    
+    
+
+module.exports=app;
     

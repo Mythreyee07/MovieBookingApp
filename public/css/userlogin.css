@@ -11,7 +11,13 @@ body{
     height: 340px;
     width:420px;
     border-radius: 40px;
-    margin-left: 380px;
+    margin-left: 440px;
     margin-top: 180px;
     padding: 40px;
+}
+.b1
+{
+    background-image: linear-gradient(to right,purple ,red);
+    border-radius: 8px;
+    padding:7px;
 }
