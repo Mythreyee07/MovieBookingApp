@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>results</title>
+    </head>
+</html>
+<body>
+    <center>
+    <div class="table data" id="flex-container">
+        <div class "c1">
+            <h1>Movie booking</h1>
+        </div>
+        <div class "c1">
+            <table border="1">
+                <tr>
+                    <th>SI_NO</th>
+                    <th>Movie name</th>
+                    <th>Total no of seats</th>
+                    <th>No of seats booked</th>
+                    <th>No of seats avaliable</th>
+                    
+                </tr>
+                <% if(userData.length!=0){%>
+                <%var i=1;%>
+            <%userData.forEach(function(data){%>
+            <tr>
+                <td><%= i;%></td>
+                <td><%= data.movie_name %></td>
+                <td><%= data.no_of_seats %></td>
+                <td><%= data.no_of_seats_booked %></td>
+                <td><%= data.no_of_seats_avaliable%></td>
+            </tr>
+        <% i++;})%>
+        <%} else{%>
+        <tr>
+            <td colspan="9">Error cannot get the data</td>
+        </tr>
+        
+       <% }%>
+         </table>
+        </div>
+    </div>
+</center>
+</body>

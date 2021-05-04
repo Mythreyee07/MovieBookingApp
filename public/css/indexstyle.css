@@ -1,0 +1,14 @@
+body
+{
+    background-image: url("https://etimg.etb2bimg.com/photo/77166079.cms");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.btn-primary
+{
+    background-image: linear-gradient(to right,purple ,red);
+    
+    border-radius: 8px;
+    padding:7px;
+}
