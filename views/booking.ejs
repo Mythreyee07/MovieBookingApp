@@ -1,6 +1,15 @@
 <html>
     <head>
         <title>results</title>
+        <style>
+            body{
+                background-image: url("https://images.pexels.com/photos/414660/pexels-photo-414660.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
+                background-attachment: fixed;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            
+        </style>
     </head>
 </html>
 <body>
@@ -10,7 +19,7 @@
             <h1>Movie booking</h1>
         </div>
         <div class "c1">
-            <table border="1">
+            <table border="2">
                 <tr>
                     <th>SI_NO</th>
                     <th>Movie name</th>
@@ -32,7 +41,7 @@
         <% i++;})%>
         <%} else{%>
         <tr>
-            <td colspan="9">Error cannot get the data</td>
+            <td colspan="12">Error cannot get the data</td>
         </tr>
         
        <% }%>

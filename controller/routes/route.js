@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const session = require('express-session');
 const connection = require('../../model/database');
-app.use(session({secret:"scientist21062001",
+app.use(session({secret:"Mythusri112000",
                 resave:false,
                 saveUninitialized:false}))
 
@@ -35,7 +35,7 @@ app.post('/uservalidation',(req,res)=>{
 
     connection.query('select password from user where email like ?',[email],(err,results)=>{
         req.session.loggedin = true;
-            req.session.username = email;
+        req.session.username = email;
 
         if (err) throw err;
         console.log(results[0].password);
@@ -67,6 +67,10 @@ app.post('/adminvalidation',(req,res)=>{
                         res.render("booking", {userData: result });
                 })
              }
+             else
+             {
+                res.render("index");
+             }
             
         })
         
@@ -80,6 +84,9 @@ app.post('/adminvalidation',(req,res)=>{
         {
             connection.query('update booking set no_of_seats_avaliable = no_of_seats_avaliable - ?,no_of_seats_booked=no_of_seats_booked + ? WHERE movie_name = ?',[seats,seats,name]);
             res.render("list",{name1:name,seats1:seats,amt1:amt});
+        }
+        else{
+            alert("your booking is incomplete");
         }
     })
 
